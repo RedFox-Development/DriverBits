@@ -2,15 +2,12 @@
 
 ScrewDriver system end user app
 
-## Getting Started
+## Splash screen
 
-This project is a starting point for a Flutter application.
+Flutter native splash made possible to create splash screen for the application.
 
-A few resources to get you started if this is your first Flutter project:
+[Splash](https://drive.google.com/file/d/1-ln38Kp8lNezs5qOK5FKw_ijmOhnH41m/view?usp=drivesdk)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Loading screen
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[Loading](https://drive.google.com/file/d/1-kW2eF0SvtYMQlZsw4Fq9RuNavUi9z9d/view?usp=drivesdk)
