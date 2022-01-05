@@ -6,8 +6,8 @@ ScrewDriver system end user app
 
 Flutter native splash made possible to create splash screen for the application.
 
-<img alt="Splash" width="256" src="https://drive.google.com/file/d/1-ln38Kp8lNezs5qOK5FKw_ijmOhnH41m/view?usp=drivesdk"/>
+<img alt="Splash" width="256" src="https://drive.google.com/file/d/1-ncsCLS8jCKxHFJYgQCI7tQBIvN12d7M/view?usp=drivesdk"/>
 
 ## Loading screen
 
-<img alt="Loading" width="256" src="https://drive.google.com/file/d/1-kW2eF0SvtYMQlZsw4Fq9RuNavUi9z9d/view?usp=drivesdk"/>
+<img alt="Loading" width="256" src="https://drive.google.com/file/d/1-pSnT0RYLlRU3PWKwMJUBGdnIEuF38Uc/view?usp=drivesdk"/>
