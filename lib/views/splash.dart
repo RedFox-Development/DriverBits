@@ -44,7 +44,7 @@ class _SplashState extends State<Splash> {
                 loop: 0,
                 gradient: const RadialGradient(
                     stops: [0.0,0.75],
-                    colors: [Colors.white, Colors.black87]),
+                    colors: [Color(0xffEBC43C), Colors.black87]),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +60,7 @@ class _SplashState extends State<Splash> {
                   text: 'DriverBits',
                   style: TextStyle(
                       fontSize: _textSizes[0] * 1.5,
-                      color: Colors.white
+                      color: const Color(0xffEFD063)
                   ),
                 ),
               ),

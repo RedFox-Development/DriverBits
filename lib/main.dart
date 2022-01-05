@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:driver_bits/blocs/provider.dart';
-
 import 'package:driver_bits/views/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) => runApp(const Main()));
 }
@@ -24,21 +25,20 @@ class Main extends StatelessWidget {
     return Provider(
       child: MaterialApp(
         theme: ThemeData(
-            brightness: Brightness.dark,
             colorScheme: const ColorScheme(
-              error: Colors.red,
-              surface: Colors.black26,
-              background: Colors.black45,
-              primary: Color(0xff2faeef),
-              primaryVariant: Colors.orange,
-              secondary: Color(0xff3466b0),
-              secondaryVariant: Colors.lightGreenAccent,
+              brightness: Brightness.dark,
+              background: Color(0xff292727),
+              error: Color(0xffb00020),
+              onBackground: Color(0xffEBC43C),
+              onError: Colors.black38,
               onPrimary: Colors.black45,
-              onSecondary: Colors.black45,
-              onError: Colors.redAccent,
-              onBackground: Colors.lightGreenAccent,
-              onSurface: Color(0xff3466b0),
-              brightness: Brightness.dark
+              onSecondary: Colors.black38,
+              onSurface: Color(0xffEBC43C),
+              primary: Color(0xff437563),
+              primaryVariant: Color(0xff4a826e),
+              secondary: Color(0xffEBC43C),
+              secondaryVariant: Color(0xffEFD063),
+              surface: Color(0xff292727)
             )
         ),
         debugShowCheckedModeBanner: false,
