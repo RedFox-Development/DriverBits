@@ -1,6 +1,6 @@
 # DriverBits
 
-ScrewDriver system end user app
+ScrewDriver system end user app built with Flutter
 
 ## Splash screen
 

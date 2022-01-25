@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:driver_bits/blocs/applicationBloc.dart';
 
 class Provider extends InheritedWidget {
@@ -7,7 +8,7 @@ class Provider extends InheritedWidget {
   Provider({Key? key, child}) : super(key: key, child: child);
 
   @override
-  bool updateShouldNotify(_) => true;
+  bool updateShouldNotify(oldWidget) => true;
 
   static AppBloc of(context) {
     return (context.inheritFromWidgetOfExactType(Provider) as Provider).appBloc;
