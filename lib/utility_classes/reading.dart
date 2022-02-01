@@ -40,14 +40,14 @@ class Reading {
     }
   }
 
-  get timestamp => _timestamp;
-  get timeSince => _timeSinceMeasured();
-  get driver => _driver;
-  get rssi => _rssi;
-  get temperature => _temperature;
-  get humidity => _humidity;
-  get pressure => _pressure;
-  get battery => _battery;
-  get sequenceNo => _measurementSequenceNumber;
-  get tagID => _tag;
+  int get timestamp => _timestamp;
+  String get timeSince => _timeSinceMeasured();
+  String get driver => _driver;
+  int get rssi => _rssi;
+  double get temperature => _temperature;
+  double get humidity => _humidity;
+  int get pressure => _pressure;
+  int get battery => _battery;
+  int get sequenceNo => _measurementSequenceNumber;
+  String get tagID => _tag;
 }

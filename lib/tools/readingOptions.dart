@@ -9,7 +9,19 @@ Map<String, int> _opt_indoor = {};
 ReadingOptions _defaults = ReadingOptions();
 
 // actual options, provide parameters
-ReadingOptions _indoor = ReadingOptions();
+ReadingOptions _indoor = ReadingOptions(
+  'indoor',
+  {
+    'start': 0,
+    'end': 45,
+    'warnLow': 15,
+    'warnHigh': 29,
+    'alertLow': 10,
+    'alertHigh': 35,
+    'optimum1': 22,
+    'optimum2': 26
+  }
+);
 ReadingOptions _storage = ReadingOptions();
 ReadingOptions _sauna = ReadingOptions();
 ReadingOptions _summer = ReadingOptions();

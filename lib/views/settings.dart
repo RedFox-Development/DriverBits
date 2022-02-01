@@ -28,10 +28,10 @@ class _Settings extends State<Settings> {
         child: ListView(
           children: <Widget>[
             SwitchListTile(
-              activeColor: Colors.tealAccent,
-              activeTrackColor: Colors.teal,
-              inactiveTrackColor: Colors.amber,
-              inactiveThumbColor: Colors.amberAccent,
+              activeColor: Colors.teal,
+              activeTrackColor: Colors.amberAccent,
+              inactiveTrackColor: Colors.teal,
+              inactiveThumbColor: Colors.amber,
               title: currentTheme.isItDark
                   ? const Text('Switch to light theme')
                   : const Text('Switch to dark theme'),
