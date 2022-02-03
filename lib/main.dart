@@ -6,12 +6,16 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 import 'package:driver_bits/views/splash.dart';
+import 'package:driver_bits/utility_classes/tag.dart';
+import 'package:driver_bits/tools/tagController.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Directory dir = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(dir.path);
-  hive = await Hive.openBox('driverbit');
+  hive = await Hive.openBox('driverbit.general');
+  tagBox = await Hive.openBox('driverbit.tags');
+  tagBox.put('default', []);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])

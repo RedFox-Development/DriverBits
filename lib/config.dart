@@ -4,4 +4,5 @@ import 'package:driver_bits/utility_classes/myTheme.dart';
 import 'package:hive/hive.dart';
 
 MyTheme currentTheme = MyTheme();
+late Box tagBox;
 late Box hive;

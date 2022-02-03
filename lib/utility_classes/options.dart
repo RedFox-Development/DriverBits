@@ -6,8 +6,8 @@ class ReadingOptions {
   final Map<String, int> pressure;
   final Map<String, int> voltage;
   final Map<String, int> rssi = {
-    'start': -160,
-    'end': 10,
+    'start': -150,
+    'end': 0,
     'veryHigh': -20,
     'high': -50,
     'moderate': -90,
@@ -29,16 +29,16 @@ class ReadingOptions {
     this.humidity = const {
       'start': 0,
       'end': 100,
-      'warnLow': 20,
-      'warnHigh': 50,
+      'warnLow': 15,
+      'warnHigh': 65,
       'alertLow': 10,
-      'alertHigh': 65,
+      'alertHigh': 75,
       'optimum1': 20,
-      'optimum2': 50
+      'optimum2': 60
     },
     this.pressure = const {
-      'start': 98000,
-      'end': 102300,
+      'start': 96000,
+      'end': 104000,
       'warnLow': 100900,
       'warnHigh': 101450,
       'alertLow': 100400,

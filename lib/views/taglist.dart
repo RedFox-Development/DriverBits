@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:driver_bits/utility_classes/tag.dart';
 import 'package:driver_bits/views/tag_ui.dart';
-import 'package:driver_bits/utility_classes/group.dart';
+import 'package:driver_bits/tools/tagController.dart';
 
 class TagList extends StatefulWidget {
   const TagList({Key? key}) : super(key: key);
@@ -17,8 +17,11 @@ class _TagList extends State<TagList> {
   @override
   initState() {
     super.initState();
-    _tags = [Tag('default-id', 'default', 'indoor')];
-    _currentTagIndex = 0;
+    List<Map<String, String>> boxedTags = getTagsInTheBox();
+    _tags = boxedTags.map((element) {
+      return Tag(id: element['id'].toString(), name: element['name'].toString(), type: element['type'].toString());
+    }).toList();
+    _currentTagIndex = _tags.length-1;
   }
 
   void _selectTag(int indexOf) => setState(() {
@@ -34,12 +37,14 @@ class _TagList extends State<TagList> {
       );
     }
 
-    Widget _noTag() => Center(
-      child: Text(
-        'No tags were found',
-        style: Theme.of(context).textTheme.headline4,
-      ),
-    );
+    Widget _noTag() {
+      return Center(
+        child: Text(
+          'No tags were found',
+          style: Theme.of(context).textTheme.headline4,
+        ),
+      );
+    }
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
