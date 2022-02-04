@@ -11,7 +11,11 @@ class Settings extends StatefulWidget {
 }
 
 class _Settings extends State<Settings> {
-  
+  final _formKey = GlobalKey<FormState>();
+  String _selectedType = 'indoor';
+  String _newId = '';
+  String _newName = '';
+
   @override
   void initState() {
     super.initState();
@@ -41,56 +45,69 @@ class _Settings extends State<Settings> {
     }
 
     Widget _tagAdder() {
-      String _selectedType = 'indoor';
-      String _newId = '';
-      String _newName = '';
-
-      void _handleTagAdder() {
-        setState(() {
-          _newId = '';
-          _newName = '';
-        });
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saving new tag')),);
-      }
 
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
-                onChanged: (String newValue) {
-                  setState(() {
-                    _newId = newValue;
-                  });
+                onSaved: (String? newValue) {
+                  _newId = newValue!;
+                },
+                validator: (String? value) {
+                  if (value!.isEmpty) {
+                    return 'Id not';
+                  }
+                  return null;
                 },
                 decoration: const InputDecoration(
-                    labelText: 'Set tag id'
+                    labelText: 'Tag id'
                 ),
               ),
               TextFormField(
-                onChanged: (String newValue) {
-                  setState(() {
-                    _newName = newValue;
-                  });
+                onSaved: (String? newValue) {
+                  _newName = newValue!;
+                },
+                validator: (String? value) {
+                  if (value!.isEmpty) {
+                    return 'Name not set';
+                  }
+                  return null;
                 },
                 decoration: const InputDecoration(
-                    labelText: 'Set tag name'
+                    labelText: 'Tag name'
                 ),
               ),
               DropdownButtonFormField<String>(
-                value: _selectedType,
-                onChanged: (String? newValue) => setState(() {
-                  _selectedType = newValue!;
-                }),
+                value: 'indoor',
+                decoration: const InputDecoration(
+                    labelText: 'Tag type'
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedType = newValue!;
+                  });
+                },
                 items: <String>['indoor', 'outdoor', 'storage', 'sauna', 'fridge', 'freezer']
                     .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(child: Text(value), value: value);
-                })
+                      return DropdownMenuItem<String>(child: Text(value), value: value);
+                    })
                     .toList(),
               ),
-              OutlinedButton(
-                onPressed: _handleTagAdder,
+              ElevatedButton(
+                onPressed: () {
+                  print(_newId + ', ' +  _newName + ', ' + _selectedType);
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saving new tag'),),);
+                    _formKey.currentState!.reset();
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('New tag saved'),),);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Check fields'),),);
+                  }
+                },
                 child: const Text('Save tag'),
               ),
             ],

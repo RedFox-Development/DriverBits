@@ -31,6 +31,8 @@ class TagUi extends StatefulWidget {
 }
 
 class _TagState extends State<TagUi> {
+  final _formKey = GlobalKey<FormState>();
+  String _tagViewMode = 'gauges';
   late Reading _latest;
 
   @override
@@ -746,16 +748,116 @@ class _TagState extends State<TagUi> {
     //       );
     //     }
 
+    Widget _selector() {
+      return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Form(
+            key: _formKey,
+            child: DropdownButtonFormField(
+              value: 'gauges',
+              decoration: const InputDecoration(
+                labelText: 'Tag view'
+              ),
+              onChanged: (String? nextValue) {
+                setState(() {
+                  _tagViewMode = nextValue!;
+                });
+              },
+              items: <String>['gauges', 'simple', 'statistics', 'settings']
+                .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(child: Text(value), value: value);
+                })
+                .toList(),
+            ),
+          ),
+        );
+    }
+
+    Widget _gauges() {
+      return Column(
+        children: [
+          _tempGauge(),
+          _humidGauge(),
+          _presGauge(),
+          _batGauge(),
+          _rssiGauge()
+        ],
+      );
+    }
+
+    Widget _simple() {
+      double trimPressure() => _latest.pressure/100;
+      double trimVoltage() => _latest.battery/1000;
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text('Temperature: ' + _latest.temperature.toStringAsFixed(1) + ' °C'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text('Humidity: ' + _latest.humidity.toStringAsFixed(1) + ' %'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text('Pressure: ' + trimPressure().toStringAsFixed(1) + ' hPa'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text('Battery: ' + trimVoltage().toStringAsFixed(2) + ' V'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text('RSSI: ' + _latest.rssi.toString()),
+          ),
+        ],
+      );
+    }
+
+    Widget _statistics() {
+      return Column(
+        children: const [
+          Padding(
+            padding: EdgeInsets.all(12),
+            child: Text('Statistics'),
+          ),
+        ],
+      );
+    }
+
+    Widget _settings() {
+      return Column(
+        children: const [
+          Padding(
+            padding: EdgeInsets.all(12),
+            child: Text('Settings'),
+          ),
+        ],
+      );
+    }
+
+    Widget _viewModes() {
+      switch (_tagViewMode) {
+        case 'gauges':
+          return _gauges();
+        case 'simple':
+          return _simple();
+        case 'statistics':
+          return _statistics();
+        case 'settings':
+          return _settings();
+        default:
+          return _gauges();
+      }
+    }
+
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       children: <Widget>[
         Text(widget._selected.name),
         Text(_latest.timeSince, style: Theme.of(context).textTheme.headline4,),
-        _tempGauge(),
-        _humidGauge(),
-        _presGauge(),
-        _batGauge(),
-        _rssiGauge()
+        _selector(),
+        _viewModes(),
       ],
     );
   }
